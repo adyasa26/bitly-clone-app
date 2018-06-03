@@ -1,0 +1,7 @@
+.landing{
+    background: url("img/bg.jpg") no-repeat !important;
+}
+.landing.segment{
+    min-height: 500px;
+    padding: 0em 0em;
+}

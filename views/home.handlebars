@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="card bg-dark text-white">
+            <img class="card-img" src="img/bg.jpg" alt="Card image">
+            <div class="card-img-overlay">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        {{!-- <nav class="navbar " class="nav justify-content-end"> --}}
+                            <form action="/login" method="POST" class="form-inline my-2 my-lg-0">
+                                <div class="form-group row">
+                                   
+                                        <input class="form-control form-control-sm" name="username" placeholder="username" type="text">
+                                        &nbsp;
+                                        <input class="form-control form-control-sm" name="password" placeholder="password" type="password">
+                                        &nbsp;
+                                        <button type="submit" class="btn btn-dark btn-sm">login</button>
+                                        &nbsp;
+                                </div>
+                            </form>
+                        {{!-- </nav> --}}
+                    </li>
+                </ul>
+
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" align="center">
+                        <h1>
+                            <b> Bit.ly Clone Prototype </b>
+                        </h1>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" align="center">
+                        <form action="/echo" method="POST">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input class="form-control form-control-lg" name="link" placeholder="input your link" type="text">
+                                </div>
+                                <button type="submit" class="btn btn-warning btn-lg"><b>Magic!</b></button>
+                            </div>
+                            <h4>
+                                <i> your uniqe link will come up below </i>
+                            </h4>
+                            <h3 color="blue">
+                                <b> {{ link }} </b>
+                            </h3>
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

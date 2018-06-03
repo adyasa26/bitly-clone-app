@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="card bg-dark text-white">
+            <img class="card-img" src="img/bg2.jpg" alt="Card image">
+            <div class="card-img-overlay">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        {{!--
+                        <nav class="navbar " class="nav justify-content-end"> --}}
+                            <form action="/logout" method="POST" class="form-inline my-2 my-lg-0">
+                                <div class="form-group row">
+                                    <button type="submit" class="btn btn-warning btn-sm">
+                                        <b>log out</b>
+                                    </button>
+                                    &nbsp;
+                                </div>
+                            </form>
+                            {{!-- </nav> --}}
+                    </li>
+                </ul>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" align="center">
+                        <h1>
+                            <b> Welcome, {{us}} </b>
+                        </h1>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header" align="center">
+                    <b>
+                        <i>Input Here</i>
+                    </b>
+                </div>
+                <div class="card-body">
+
+                    <p class="card-text">input your link and i'll give a magic word, trust me</p>
+                    <form id="form">
+                        <input class="form-control form-control-sm" name="link" id="link" placeholder="input your link" type="text">
+                        <br>
+                        <ul class="nav justify-content-end">
+                            <li>
+                                <button align="right" id="btn" type="submit" class="btn btn-warning btn-sm">
+                                    <b>Magic!</b>
+                                </button>
+                            </li>
+                        </ul>
+                        {{!-- {{ value }} --}}
+                    </form>
+
+                </div>
+                <div class="card-footer" align="center">
+                    <b>
+                        <h4 id="url"> your uniqe url </h4>
+                    </b>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table id="tbku" class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th align="center" scope="col">Link</th>
+                        <th scope="col">Edit Short link</th>
+                        <th scope="col">count</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{!--
+<h1> Bit.ly clone prototype | hello {{us}} </h1> --}} {{!-- script jquery --}}
+
+<script>
+    function iteret(val) {
+
+        const data = $(`#link-${val}`).val()
+        { alert("data berhasil di update") }
+        $.post('/edit', { url: val, new: data })
+
+    }
+    $(document).ready(function () {
+
+
+        $.get('/generate').done(function (res, err) {
+
+            res.map(function (data) {
+
+                $('#tbku > tbody').append(`
+
+    <tr>
+        <td>${data.links}</td>
+        <td>
+            
+             <form>
+                <div class="form-group row">
+                    <div class="col-md-10">
+                        <input name="id" type="hidden" value=${data.uniq_url}>
+                        <input class="form-control form-control-sm" id="link-${data.uniq_url}" name="link" value="${data.uniq_url}" type="text text-input field">
+                    </div>
+                        <button class="btn btn-warning btn-sm" id="edit" type="submit" onclick=iteret('${data.uniq_url}')>Edit</button>
+                </div>
+             </form>         
+        </td>
+
+        <td>${data.count}</td>
+    </tr>
+    
+                       `)
+            })
+        })
+
+
+        $("#btn").click(function (e) {
+            e.preventDefault();
+            let link = $("#link").val();
+            if (link == '') { alert("Please fill out the form") }
+            else {
+                $.post("/generate", { link: link }, function (response, status) {
+                    $('#url').text(response.link)
+                  
+                    $("#form")[0].reset();
+                });
+            }
+
+        });
+    });
+</script>
